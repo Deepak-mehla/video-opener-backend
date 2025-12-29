@@ -10,7 +10,13 @@ def process():
         return "No video URL", 400
 
     try:
-        cmd = ["yt-dlp", "-f", "best", "-g", video_url]
+        cmd = [
+    "yt-dlp",
+    "-f", "bv*[ext=mp4]/best[ext=mp4]/best",
+    "-g",
+    video_url
+]
+
         stream_url = subprocess.check_output(cmd).decode().strip()
         return redirect(stream_url)
     except Exception as e:
